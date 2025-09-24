@@ -1,9 +1,15 @@
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 export const Container = ({ children }: { children: React.ReactNode }) => {
-  return <SafeAreaView className={styles.container}>{children}</SafeAreaView>;
-};
+  const headerHeight = useHeaderHeight();
 
-const styles = {
-  container: 'flex flex-1 m-6',
+  return (
+    <SafeAreaView
+      edges={['bottom', 'left', 'right']}
+      className="flex flex-1 gap-4"
+      style={{ marginTop: headerHeight }}>
+      {children}
+    </SafeAreaView>
+  );
 };

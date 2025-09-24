@@ -39,6 +39,13 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.riczer.bookfinder"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b797e771-8f77-4c70-bd4f-f414cd1f7f14"
       }
     }
   }
