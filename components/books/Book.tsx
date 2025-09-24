@@ -18,6 +18,7 @@ export const Book = ({ width, imgSrc, title }: Props) => {
             width: '100%',
             height: '100%',
           }}
+          contentFit="contain"
         />
       ) : (
         <NoCoverBook width={width} title={title} />

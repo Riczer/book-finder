@@ -8,7 +8,7 @@ export const BookListSkeleton = () => {
 
   return (
     <FlashList
-      data={[1, 2, 3, 4]}
+      data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
       horizontal
       ItemSeparatorComponent={() => <View className="mx-2" />}
       renderItem={(item) => {

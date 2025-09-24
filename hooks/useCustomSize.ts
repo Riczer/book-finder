@@ -1,4 +1,6 @@
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions, Platform } from 'react-native';
+
+const isWeb = Platform.OS === 'web';
 
 type Sizes = 'small' | 'large';
 
@@ -8,8 +10,8 @@ interface Measure {
 }
 
 const variants: Record<Sizes, Measure> = {
-  small: { width: 0.4, height: 0 },
-  large: { width: 0.6, height: 0.4 },
+  small: { width: isWeb ? 0.1 : 0.4, height: 0 },
+  large: { width: isWeb ? 0.2 : 0.6, height: 0.4 },
 };
 
 export const useCustomSize = (size: Sizes) => {

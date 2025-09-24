@@ -6,7 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 import { getAddedBooks, getBooks, getTrendingBooks } from '~/services/bookServices';
 import { BookListSkeleton } from '~/components/books/BookListSkeleton';
 import { TrendingBookListSkeleton } from '~/components/books/TrendingBookListSkeleton';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
+
+const isWeb = Platform.OS === 'web';
 
 export default function Home() {
   const { data: trendingBooks } = useQuery({
@@ -53,21 +55,27 @@ export default function Home() {
         <View className="container">
           <Text className="text-2xl text-white">Trending</Text>
         </View>
-        {trendingBooks.works.length === 0 ? (
-          <TrendingBookListSkeleton />
-        ) : (
-          <TrendingBookList trendingBooks={trendingBooks} />
-        )}
-        <View className="container">
-          <Text className="text-2xl text-white">New Releases</Text>
-        </View>
-        <View className="container">
-          {Object.keys(newBooks).length === 0 ? (
-            <BookListSkeleton />
+        <View className={`${isWeb ? 'container' : ''}`}>
+          {trendingBooks.works.length === 0 ? (
+            <TrendingBookListSkeleton />
           ) : (
-            <BookList newBooks={newBooks} olids={olids} />
+            <TrendingBookList trendingBooks={trendingBooks} />
           )}
         </View>
+        {!isWeb && (
+          <>
+            <View className="container">
+              <Text className="text-2xl text-white">New Releases</Text>
+            </View>
+            <View className="container">
+              {Object.keys(newBooks).length === 0 ? (
+                <BookListSkeleton />
+              ) : (
+                <BookList newBooks={newBooks} olids={olids} />
+              )}
+            </View>
+          </>
+        )}
       </Container>
     </>
   );
